@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.all
+    return render :json => Tweet.all.order(:retweets).limit(10) if params[:format] == 'json'
   end
 end
