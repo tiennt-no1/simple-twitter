@@ -4,7 +4,7 @@ import _ from 'lodash'
 const initialState = {
     tweets: [],
     errorMessage: null,
-    currentPage: 0
+    currentPage: 1
   };
   
   function rootReducer(state = initialState, action) {
