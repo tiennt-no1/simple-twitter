@@ -11,8 +11,24 @@ const mapStateToProps = state => {
 
 class ConnectedList extends Component {
 
+  isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.trackScrolling);
+  }
+
+  trackScrolling = () => {
+    const wrappedElement = document.getElementById('root');
+    if (this.isBottom(wrappedElement)) {
+      alert('header bottom reached');
+    }
+  };
+
   componentDidMount() {
-    this.props.fetchTweets()
+    this.props.fetchTweets();
+    document.addEventListener('scroll', this.trackScrolling);
   }
 
   render() {
