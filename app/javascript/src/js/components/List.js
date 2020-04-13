@@ -7,7 +7,8 @@ import Tweet from "./Tweet";
 const mapStateToProps = state => {
   return {
     tweets: state.tweets,
-    currentPage: state.currentPage
+    currentPage: state.currentPage,
+    areFetching: state.areFetching
   };
 };
 
@@ -25,16 +26,18 @@ class ConnectedList extends Component {
   trackScrolling = () => {
     const wrappedElement = document.getElementById('root');
     if (this.isBottom(wrappedElement)) {
-      alert('header bottom reached');
-      const {fetchTweets, currentPage} = this.props
-      fetchTweets(currentPage)
+
+      const {fetchTweets, currentPage, areFetching} = this.props
+      fetchTweets({currentPage, areFetching})
     }
   };
 
   componentDidMount() {
 
-    const {fetchTweets, currentPage} = this.props
-    if( currentPage == 1) { fetchTweets(currentPage) }
+    const {fetchTweets, currentPage, areFetching} = this.props
+    if( currentPage == 1) {
+      fetchTweets({currentPage, areFetching})
+    }
     document.addEventListener('scroll', this.trackScrolling);
   }
 

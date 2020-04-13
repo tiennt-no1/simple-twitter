@@ -1,4 +1,4 @@
-import {ADD_ARTICLE, DELETE_TWEET, RE_TWEET, TWEET_CREATED} from "../constants/action-types";
+import {ADD_ARTICLE, DELETE_TWEET, RE_TWEET, TWEET_CREATED, ARE_FETCHING} from "../constants/action-types";
 
 function addArticle(payload) {
   return {type: ADD_ARTICLE, payload}
@@ -22,12 +22,15 @@ const postOptions = {
   }
 };
 
-function fetchTweets(currentPage) {
+function fetchTweets({currentPage, areFetching}) {
+  if(areFetching) {return null;}
   return function (dispatch) {
+    dispatch({type: ARE_FETCHING, payload: true});
     return fetch(`/tweets.json?currentPage=${currentPage}`)
       .then(response => response.json())
       .then(json => {
         dispatch({type: ADD_ARTICLE, payload: json});
+        dispatch({type: ARE_FETCHING, payload: false});
       });
   };
 }
@@ -58,7 +61,6 @@ function reTweet(id) {
 
 function createNew(content) {
   return function (dispatch) {
-    debugger
     const body_params = JSON.stringify({ content })
     return fetch(`/tweets`, _.merge(postOptions, {body: body_params}))
       .then(response => response.json())

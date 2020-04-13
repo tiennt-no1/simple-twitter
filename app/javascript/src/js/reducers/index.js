@@ -1,10 +1,11 @@
-import { ADD_ARTICLE,  DELETE_TWEET, RE_TWEET, TWEET_CREATED } from "../constants/action-types";
+import { ADD_ARTICLE,  DELETE_TWEET, RE_TWEET, TWEET_CREATED, ARE_FETCHING } from "../constants/action-types";
 import _ from 'lodash'
 
 const initialState = {
     tweets: [],
     errorMessage: null,
-    currentPage: 1
+    currentPage: 1,
+    areFetching: false
   };
   
   function rootReducer(state = initialState, action) {
@@ -33,16 +34,19 @@ const initialState = {
         });
       }
     }
-
     else if (action.type === TWEET_CREATED) {
       if(action.payload.success){
         let tweets = _.cloneDeep(state.tweets)
         const newTweets = _.concat([action.payload.tweet], tweets)
-        debugger
         return Object.assign({}, state, {
           tweets: newTweets
         });
       }
+    }
+    else if (action.type === ARE_FETCHING) {
+      return Object.assign({}, state, {
+        areFetching: action.payload
+      });
     }
     return state;
   };
