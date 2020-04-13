@@ -1,9 +1,22 @@
-import {ADD_ARTICLE, DELETE_TWEET, RE_TWEET} from "../constants/action-types";
+import {ADD_ARTICLE, DELETE_TWEET, RE_TWEET, TWEET_CREATED} from "../constants/action-types";
 
 function addArticle(payload) {
   return {type: ADD_ARTICLE, payload}
 };
 
+const deleteOptions = {
+  method: 'DELETE'
+};
+
+
+const putOptions = {
+  method: 'PUT'
+};
+
+
+const postOptions = {
+  method: 'POST'
+};
 
 function fetchTweets(currentPage) {
   return function (dispatch) {
@@ -14,15 +27,6 @@ function fetchTweets(currentPage) {
       });
   };
 }
-
-const deleteOptions = {
-  method: 'DELETE'
-};
-
-
-const putOptions = {
-  method: 'PUT'
-};
 
 
 function deleteTweet(id) {
@@ -47,5 +51,16 @@ function reTweet(id) {
       });
   };
 }
+
+function createNew(content) {
+  return function (dispatch) {
+    return fetch(`/tweets`, postOptions)
+      .then(response => response.json())
+      .then(json => {
+        dispatch({type: TWEET_CREATED, payload: json});
+      });
+  };
+}
+
 
 export {addArticle, fetchTweets, deleteTweet, reTweet}

@@ -1,4 +1,4 @@
-import { ADD_ARTICLE,  DELETE_TWEET, RE_TWEET } from "../constants/action-types";
+import { ADD_ARTICLE,  DELETE_TWEET, RE_TWEET, TWEET_CREATED } from "../constants/action-types";
 import _ from 'lodash'
 
 const initialState = {
@@ -30,6 +30,16 @@ const initialState = {
         tweet.retweets += 1
         return Object.assign({}, state, {
           tweets: tweets
+        });
+      }
+    }
+
+    else if (action.type === TWEET_CREATED) {
+      if(action.payload.success){
+        let tweets = _.cloneDeep(state.tweets)
+        const newTweets = _([action.payload.tweet]).concat(tweets)
+        return Object.assign({}, state, {
+          tweets: newTweets
         });
       }
     }

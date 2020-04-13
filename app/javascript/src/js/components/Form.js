@@ -16,7 +16,7 @@ class ConnectedForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ""
+      content: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,28 +28,29 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { title } = this.state;
-    this.props.addArticle({ title });
-    this.setState({ title: "" });
+    const { content } = this.state;
+    this.props.addArticle({ content });
+    this.setState({ content: "" });
   }
   render() {
-    const { title } = this.state;
-    const {errorMessage} = this.props;
+    const { content } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label> Error: </label> 
-        <p> {errorMessage} </p>
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={this.handleChange}
-          />
-        </div>
-        <button type="submit">SAVE</button>
-      </form>
+      <div className="container-fluid">
+        <form className="form-group" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="content">Content</label>
+            <input className="form-control"
+                   type="text"
+                   id="content"
+                   value={content}
+                   onChange={this.handleChange}
+            />
+          </div>
+
+          <button type="submit" className='fa fa-plus btn btn-primary'>Create new tweet</button>
+        </form>
+      </div>
+
     );
   }
 }

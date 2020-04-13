@@ -8,8 +8,8 @@ class TweetsController < ApplicationController
   end
 
   def create
-    if Tweet.create!(content: params[:content])
-      render json: {success: true}
+    if tweet = Tweet.create!(content: params[:content])
+      render json: {success: true, tweet: tweet}
     else
       render json: {success: false}
     end
