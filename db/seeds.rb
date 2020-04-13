@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+(1..100).each do |i|
+    Tweet.create([
+        { content: "...........................primary content #{i}" }
+    ])
+end
+
+
+puts "shard 1"
+
+ActiveRecord::Base.connects_to(database: { writing: :shard1, reading: :shard1_replica }) do
+    (1..100).each do |i|
+        Tweet.create([
+            { content: "...........................shard1 content #{i}" }
+        ])
+    end
+    
+end
+
+

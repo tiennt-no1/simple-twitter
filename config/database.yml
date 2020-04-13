@@ -31,7 +31,7 @@ development:
     <<: *default
     port: 6406
     database: app_development
-  shard1_replicas:
+  shard1_replica:
     <<: *default
     port: 7506
     database: app_development
