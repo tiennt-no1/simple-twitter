@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {deleteTweet} from "../actions/index";
+import {deleteTweet, reTweet} from "../actions/index";
 import {connect} from "react-redux";
 class ConnectedTweet extends Component {
   render() {
@@ -13,7 +13,7 @@ class ConnectedTweet extends Component {
             <div className="modal-footer">
               <i className="fas fa-share-square">{retweets}</i>
               <button type="button" className="fas fa-trash-alt btn btn-danger" onClick={() => this.props.deleteTweet(id)}>Delete</button>
-              <button type="button" className="fas fa-share-square btn btn-primary" data-dismiss="modal">Re-tweet</button>
+              <button type="button" className="fas fa-share-square btn btn-primary" data-dismiss="modal" onClick={() => this.props.reTweet(id) }>Re-tweet</button>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@ class ConnectedTweet extends Component {
 
 const Tweet = connect(
   null,
-  { deleteTweet }
+  { deleteTweet,  reTweet }
 )(ConnectedTweet);
 
 export default Tweet;

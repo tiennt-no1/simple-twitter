@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :find_tweet,  only: [:destroy, :retweet]
   def index
-    return render :json => Tweet.all.order(:retweets).limit(10) if params[:format] == 'json'
+    return render :json => Tweet.all.order(retweets: :desc).limit(10) if params[:format] == 'json'
   end
 
   def destroy
