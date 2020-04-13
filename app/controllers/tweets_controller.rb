@@ -7,6 +7,14 @@ class TweetsController < ApplicationController
     end
   end
 
+  def create
+    if Tweet.create!(content: params[:content])
+      render json: {success: true}
+    else
+      render json: {success: false}
+    end
+  end
+
   def destroy
     if @tweet
       @tweet.delete
