@@ -4,12 +4,14 @@ import _ from 'lodash'
 const initialState = {
     tweets: [],
     errorMessage: null,
+    currentPage: 0
   };
   
   function rootReducer(state = initialState, action) {
     if (action.type === ADD_ARTICLE) {
         return Object.assign({}, state, {
-            tweets: state.tweets.concat(action.payload)
+            tweets: state.tweets.concat(action.payload),
+            currentPage: state.currentPage+1
           });
     }else if (action.type === DELETE_TWEET) {
       if(action.payload.success){

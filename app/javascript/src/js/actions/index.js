@@ -5,9 +5,9 @@ function addArticle(payload) {
 };
 
 
-function fetchTweets() {
+function fetchTweets(currentPage) {
   return function (dispatch) {
-    return fetch("/tweets.json")
+    return fetch(`/tweets.json?currentPage=${currentPage}`)
       .then(response => response.json())
       .then(json => {
         dispatch({type: ADD_ARTICLE, payload: json});

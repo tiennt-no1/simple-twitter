@@ -5,7 +5,10 @@ import { fetchTweets } from "../actions/index";
 import Tweet from "./Tweet";
 
 const mapStateToProps = state => {
-  return { tweets: state.tweets };
+  return {
+    tweets: state.tweets,
+    currentPage: state.currentPage
+  };
 };
 
 
@@ -23,11 +26,14 @@ class ConnectedList extends Component {
     const wrappedElement = document.getElementById('root');
     if (this.isBottom(wrappedElement)) {
       alert('header bottom reached');
+      const {fetchTweets, currentPage} = this.props
+      fetchTweets(currentPage)
     }
   };
 
   componentDidMount() {
-    this.props.fetchTweets();
+    const {fetchTweets, currentPage} = this.props
+    fetchTweets(currentPage)
     document.addEventListener('scroll', this.trackScrolling);
   }
 
