@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Tweet extends Component {
   render() {
-    const {content} = this.props;
+    const {content, retweets} = this.props;
     return (
         <div className="modal-dialog w-100 m-0 mb-2" role="document">
           <div className="modal-content">
@@ -10,8 +10,9 @@ class Tweet extends Component {
               <p> {content}</p>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-primary">Delete</button>
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">Re-tweet</button>
+              <i className="fas fa-share-square">{retweets}</i>
+              <button type="button" className="fas fa-trash-alt btn btn-danger">Delete</button>
+              <button type="button" className="fas fa-share-square btn btn-primary" data-dismiss="modal">Re-tweet</button>
             </div>
           </div>
         </div>

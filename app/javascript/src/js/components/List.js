@@ -19,7 +19,7 @@ class ConnectedList extends Component {
     const {tweets} = this.props
     return (<div className="container">
       {tweets.map(el => (
-        <Tweet  key={el.id} content={el.content}></Tweet>
+        <Tweet  key={el.id} content={el.content}  retweets={el.retweets}></Tweet>
       ))}
     </div>)
   }
