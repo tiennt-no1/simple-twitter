@@ -1,4 +1,5 @@
-import { ADD_ARTICLE, FOUND_BAD_WORD,  FETCH_TWEETS  } from "../constants/action-types";
+import { ADD_ARTICLE, FOUND_BAD_WORD,  DELETE_TWEET } from "../constants/action-types";
+import _ from 'lodash'
 
 const fetch_tweets = () => {
 
@@ -17,10 +18,15 @@ const initialState = {
         return Object.assign({}, state, {
             tweets: state.tweets.concat(action.payload)
           });
-    }else if (action.type === FOUND_BAD_WORD) {
-      return Object.assign({}, state, {
-        errorMessage: "Invalid, The title include bad word!"
-      });
+    }else if (action.type === DELETE_TWEET) {
+      debugger
+      if(action.payload.success){
+        let tweets = _.cloneDeep(state.tweets)
+        _.remove(tweets, (tweet) => { return tweet.id === action.payload.deleted_id})
+        return Object.assign({}, state, {
+          tweets: tweets
+        });
+      }
     }
     return state;
   };

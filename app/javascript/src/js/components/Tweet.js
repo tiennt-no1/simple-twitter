@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-
-class Tweet extends Component {
+import {deleteTweet} from "../actions/index";
+import {connect} from "react-redux";
+class ConnectedTweet extends Component {
   render() {
-    const {content, retweets} = this.props;
+    const {content, retweets, id} = this.props;
     return (
         <div className="modal-dialog w-100 m-0 mb-2" role="document">
           <div className="modal-content">
@@ -11,7 +12,7 @@ class Tweet extends Component {
             </div>
             <div className="modal-footer">
               <i className="fas fa-share-square">{retweets}</i>
-              <button type="button" className="fas fa-trash-alt btn btn-danger">Delete</button>
+              <button type="button" className="fas fa-trash-alt btn btn-danger" onClick={() => this.props.deleteTweet(id)}>Delete</button>
               <button type="button" className="fas fa-share-square btn btn-primary" data-dismiss="modal">Re-tweet</button>
             </div>
           </div>
@@ -19,5 +20,11 @@ class Tweet extends Component {
     );
   }
 }
+
+
+const Tweet = connect(
+  null,
+  { deleteTweet }
+)(ConnectedTweet);
 
 export default Tweet;

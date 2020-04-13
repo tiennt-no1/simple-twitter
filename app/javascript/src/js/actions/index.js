@@ -1,4 +1,4 @@
-import {ADD_ARTICLE} from "../constants/action-types";
+import {ADD_ARTICLE, DELETE_TWEET} from "../constants/action-types";
 
 function addArticle(payload) {
   return {type: ADD_ARTICLE, payload}
@@ -15,4 +15,20 @@ function fetchTweets() {
   };
 }
 
-export {addArticle, fetchTweets}
+const deleteOptions = {
+  method: 'DELETE'
+};
+
+
+function deleteTweet(id) {
+  return function (dispatch) {
+    return fetch(`/tweets/${id}`, deleteOptions)
+      .then(response => response.json())
+      .then(json => {
+        json.deleted_id = id
+        dispatch({type: DELETE_TWEET, payload: json});
+      });
+  };
+}
+
+export {addArticle, fetchTweets, deleteTweet}
