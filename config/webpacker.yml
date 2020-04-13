@@ -75,7 +75,10 @@ development:
       'Access-Control-Allow-Origin': '*'
     watch_options:
       ignored: '**/node_modules/**'
-
+    resolve: 
+      alias: 
+        jquery: "jquery/src/jquery"
+        $: "jquery/src/jquery"
 
 test:
   <<: *default

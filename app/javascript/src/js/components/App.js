@@ -4,11 +4,8 @@ import Form from "./Form";
 
 const App = () => (
   <div>
-    <h2>Articles</h2>
+    <h2>Tweets</h2>
       <List />
-
-    <h2>Add a new article</h2>
-    <Form />
   </div>
 );
 
