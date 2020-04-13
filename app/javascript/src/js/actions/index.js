@@ -15,7 +15,11 @@ const putOptions = {
 
 
 const postOptions = {
-  method: 'POST'
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
 };
 
 function fetchTweets(currentPage) {
@@ -54,7 +58,9 @@ function reTweet(id) {
 
 function createNew(content) {
   return function (dispatch) {
-    return fetch(`/tweets`, postOptions)
+    debugger
+    const body_params = JSON.stringify({ content })
+    return fetch(`/tweets`, _.merge(postOptions, {body: body_params}))
       .then(response => response.json())
       .then(json => {
         dispatch({type: TWEET_CREATED, payload: json});
@@ -63,4 +69,4 @@ function createNew(content) {
 }
 
 
-export {addArticle, fetchTweets, deleteTweet, reTweet}
+export {addArticle, fetchTweets, deleteTweet, reTweet, createNew}

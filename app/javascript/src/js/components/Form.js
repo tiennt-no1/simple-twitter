@@ -1,16 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addArticle } from "../actions/index";
-
-function mapDispatchToProps(dispatch) {
-  return {
-    addArticle: article => dispatch(addArticle(article))
-  };
-}
-
-const mapStateToProps = state => {
-    return { errorMessage: state.errorMessage };
-  }
+import { createNew } from "../actions/index";
 
 class ConnectedForm extends Component {
   constructor(props) {
@@ -28,8 +18,7 @@ class ConnectedForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { content } = this.state;
-    this.props.addArticle({ content });
+    this.props.createNew( this.state.content );
     this.setState({ content: "" });
   }
   render() {
@@ -56,8 +45,8 @@ class ConnectedForm extends Component {
 }
 
 const Form = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  null,
+  {createNew}
 )(ConnectedForm);
 
 export default Form;

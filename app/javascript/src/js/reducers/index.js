@@ -37,7 +37,8 @@ const initialState = {
     else if (action.type === TWEET_CREATED) {
       if(action.payload.success){
         let tweets = _.cloneDeep(state.tweets)
-        const newTweets = _([action.payload.tweet]).concat(tweets)
+        const newTweets = _.concat([action.payload.tweet], tweets)
+        debugger
         return Object.assign({}, state, {
           tweets: newTweets
         });

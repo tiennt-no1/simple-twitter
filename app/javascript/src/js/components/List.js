@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchTweets, createNew } from "../actions/index";
+import { fetchTweets } from "../actions/index";
 import Tweet from "./Tweet";
 
 const mapStateToProps = state => {
@@ -32,13 +32,14 @@ class ConnectedList extends Component {
   };
 
   componentDidMount() {
+
     const {fetchTweets, currentPage} = this.props
-    fetchTweets(currentPage)
+    if( currentPage == 1) { fetchTweets(currentPage) }
     document.addEventListener('scroll', this.trackScrolling);
   }
 
   render() {
-    const {tweets, createNew} = this.props
+    const {tweets} = this.props
     return (<div className="container-fluid">
       {tweets.map(el => (
         <Tweet  key={el.id} content={el.content}  retweets={el.retweets} id={el.id}></Tweet>

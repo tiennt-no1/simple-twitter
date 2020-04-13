@@ -3,7 +3,7 @@ class Tweet < ApplicationRecord
 
   def do_retweet
     transaction do
-      Tweet.create(content: content)
+      Tweet.create(content: content, retweet_id: id)
       update!(retweets: retweets + 1)
     end
 
