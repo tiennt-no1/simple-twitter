@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchTweets } from "../actions/index";
+import Tweet from "./Tweet";
 
 const mapStateToProps = state => {
   return { tweets: state.tweets };
@@ -16,11 +17,11 @@ class ConnectedList extends Component {
 
   render() {
     const {tweets} = this.props
-    return (<ul>
+    return (<div className="container">
       {tweets.map(el => (
-        <li key={el.id}>{el.content}</li>
+        <Tweet  key={el.id} content={el.content}></Tweet>
       ))}
-    </ul>)
+    </div>)
   }
 }
 
