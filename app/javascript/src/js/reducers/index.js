@@ -21,12 +21,6 @@ const initialState = {
       return Object.assign({}, state, {
         errorMessage: "Invalid, The title include bad word!"
       });
-    }else if (action.type === FETCH_TWEETS) {
-      debugger
-      const tweets = fetch_tweets()
-      return Object.assign({}, state, {
-        tweets: state.tweets.concat(tweets.data)
-      });
     }
     return state;
   };

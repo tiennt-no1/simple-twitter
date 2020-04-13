@@ -1,24 +1,17 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetch_tweets } from "../actions/index";
+import { fetchTweets } from "../actions/index";
 
 const mapStateToProps = state => {
   return { tweets: state.tweets };
 };
 
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetch_tweets: () => dispatch(fetch_tweets())
-  };
-}
-
-
 class ConnectedList extends Component {
 
   componentDidMount() {
-    this.props.fetch_tweets()
+    this.props.fetchTweets()
   }
 
   render() {
@@ -33,7 +26,7 @@ class ConnectedList extends Component {
 
 const List = connect(
     mapStateToProps,
-    mapDispatchToProps
+    { fetchTweets }
   )(ConnectedList);
 
 export default List;
