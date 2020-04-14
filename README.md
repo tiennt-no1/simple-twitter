@@ -46,7 +46,7 @@ mysql_master:
     networks:
       - overlay
 ```
-one shard contain a master-slave, because in heavy traffic, we should seperate writing and reading trasaction. because the most traffic from reading transaction. Others, we can scale by extend more master and more slave node, use load balancing between cluster if needed.
+one shard contain a master-slave, because in heavy traffic, we should seperate writing and reading trasaction. because the most traffic from reading transaction. Others, we can scale by extend more master and more slave node, use load balancing between replicas if needed.
 
 This app connect mutiple shards, we can seperate by local for example. this app choose shard base on region params
 
