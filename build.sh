@@ -76,5 +76,5 @@ docker exec mysql_slave2 sh -c "export MYSQL_PWD=111; mysql -u root -e 'SHOW SLA
 
 
 docker exec webapp rake db:create
-docker exec webapp docker exec webapp rails db:migrate
+docker exec webapp rails db:migrate
 docker exec webapp rake db:seed

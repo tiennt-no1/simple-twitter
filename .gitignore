@@ -30,3 +30,8 @@
 yarn-debug.log*
 .yarn-integrity
 .idea
+
+master/data/*
+slave/data/*
+master2/data/*
+slave2/data/*
