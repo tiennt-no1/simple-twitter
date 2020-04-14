@@ -23,8 +23,6 @@ services:
       - ./master/mysql_master.env
     container_name: "mysql_master"
     restart: "no"
-    ports:
-      - 4406:3306
     volumes:
       - ./master/data:/var/lib/mysql
     networks:
@@ -36,8 +34,6 @@ services:
       - ./slave/mysql_slave.env
     container_name: "mysql_slave"
     restart: "no"
-    ports:
-      - 5506:3306
     depends_on:
       - mysql_master
     volumes:
@@ -51,8 +47,6 @@ services:
       - ./master2/mysql_master.env
     container_name: "mysql_master2"
     restart: "no"
-    ports:
-      - 6406:3306
     volumes:
       - ./master2/data:/var/lib/mysql
     networks:
@@ -64,8 +58,6 @@ services:
         - ./slave2/mysql_slave.env
       container_name: "mysql_slave2"
       restart: "no"
-      ports:
-        - 7506:3306
       depends_on:
         - mysql_master2
       volumes:
