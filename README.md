@@ -15,6 +15,10 @@ This app is a simple version of twitter, without user. Just only some simple fea
 
 run `./build.sh`, may be you have run this command with sudo.
 
+then enter to localhost:3000 on browser
+
+![Image of Demo](https://github.com/tiennt-no1/simple-twitter/blob/master/demo.png)
+
 ## TECHNICAL
 
 This app wroten by ruby 2.5.5, rails 6.0 on back-end and react, redux on front-end.
@@ -67,3 +71,5 @@ This app connect mutiple shards, we can seperate by local for example. this app 
 ```
 
 If region is "vietnam", this app store database to shard1, other save on primary shard. In the future, we can scale by create more master, slave each node, create more shade if extend to another region, use load balancing between clusters.
+
+
